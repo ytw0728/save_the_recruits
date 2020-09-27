@@ -1,0 +1,29 @@
+{
+  "name": "save-the-recruits",
+  "version": "1.0.0",
+  "description": "훈련병들에게 인터넷 편지를 편하게",
+  "author": "ytw0728@gmail.com",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc"
+  },
+  "dependencies": {
+    "@types/styled-components": "^5.1.3",
+    "babel-plugin-styled-components": "^1.11.1",
+    "next": "latest",
+    "normalize.css": "^8.0.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "styled-components": "^5.2.0",
+    "the-camp-lib": "^2.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.21",
+    "@types/react": "^16.9.16",
+    "@types/react-dom": "^16.9.4",
+    "typescript": "4.0"
+  },
+  "license": "MIT"
+}
