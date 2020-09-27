@@ -1,0 +1,24 @@
+@import url('http://fonts.googleapis.com/earlyaccess/notosanskr.css');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Roboto&display=swap');
+
+:root { 
+    font-size: 16px;
+    font-family: 
+        '-apple-system', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+}
+@media only screen and (min-width: 569px) and (max-width: 1023px) {
+    :root {
+        font-size: 28px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    :root {
+        font-size: 23px;
+    }
+} 
+html, body {
+    background-color: #6127ba;
+    padding: 0;
+    margin: 0;
+}
