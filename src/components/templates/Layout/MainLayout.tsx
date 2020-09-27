@@ -1,5 +1,5 @@
 import { NextComponentType } from "next";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ContentsScreen from "src/components/organisms/ContentsScreen";
 import InfoScreen from "src/components/organisms/InfoScreen";
 import NameScreen from "src/components/organisms/NameScreen";
@@ -87,11 +87,22 @@ const Title = styled.div`
 const Description = styled.span`
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     margin-top: 1vh;
     justify-content: center;
     align-items: center;
     color: white;
     font-size: .8rem;
+    span {
+        :first-child {
+            font-size: 1.2rem;
+            margin-bottom: .5rem;
+        }
+        font-weight: 600;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
 `
 
 const MainLayout: NextComponentType = () => {
@@ -102,6 +113,8 @@ const MainLayout: NextComponentType = () => {
     const [content, setContent] = useLocalStorage('', 'content');
 
     const [loading, setLoading] = useState<boolean>(false);
+
+    const requestDate = useRef<Date>(new Date);
 
     useEffect(() => {
         if (Boolean(name) || Boolean(title) || Boolean(content)) {
@@ -130,31 +143,39 @@ const MainLayout: NextComponentType = () => {
     const onSubmit = () => {
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
+            const minimumDate = new Date(requestDate.current);
+            minimumDate.setSeconds(minimumDate.getSeconds() + 3);
+
             if (xhr.readyState === xhr.DONE) {
                 if (xhr.status === 200 || xhr.status === 201) {
                     const content = JSON.parse(xhr.responseText) as {done: boolean};
-                    console.log(content);
-                    console.log(content);
                     if (content.done) {
-                        setLoading(false);
-                        setName('');
-                        setTitle('');
-                        setContent('');
-                        setStep(0);
-                        alert('편지가 전송되었습니다.');
+                        setTimeout(() => {
+                            setLoading(false);
+                            setName('');
+                            setTitle('');
+                            setContent('');
+                            setStep(0);
+                            alert('편지가 전송되었습니다.');
+                        }, new Date() < minimumDate ? 3000 : 0);
                     }
                 } else if (xhr.status === 400) {
-                    alert('올바른 요청이 아닙니다. 다시 시도해주세요.');
-                    setLoading(false);
+                    setTimeout(() => {
+                        alert('올바른 요청이 아닙니다. 다시 시도해주세요.');
+                        setLoading(false);
+                    }, new Date() < minimumDate ? 3000 : 0);
                 } else {
-                    alert('예상치 못한 오류입니다. 더캠프 사이트를 이용 부탁드립니다.');
-                    setLoading(false);
+                    setTimeout(() => {
+                        alert('예상치 못한 오류입니다. 더캠프 사이트를 이용 부탁드립니다.');
+                        setLoading(false);
+                    }, new Date() < minimumDate ? 3000 : 0);
                 }
             }
         }
         setLoading(true);
         xhr.open('POST', '/api/send');
         xhr.setRequestHeader('Content-Type', 'application/json');
+        requestDate.current = new Date();
         xhr.send(JSON.stringify({
             name: name,
             title: title,
@@ -165,7 +186,10 @@ const MainLayout: NextComponentType = () => {
         <Wrapper>
             <Viewport>
                 <Title>훈련병에게 편지를...!</Title>
-                <Description>윤태원 (10/08/2020 입소)</Description>
+                <Description>
+                    <span>윤태원</span>
+                    { step === 0 && <span>07/28/1998 출생 &nbsp;&nbsp; 10/08/2020 입소</span>}
+                </Description>
                 { step === 0 && <InfoScreen onNext={() => setStep(1)}/> }
                 { step === 1 && <NameScreen onPrev={() => setStep(0)} onNext={() => setStep(2)}/> }
                 { 
