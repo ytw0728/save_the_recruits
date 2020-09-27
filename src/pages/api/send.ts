@@ -2,6 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import * as TheCamp from 'the-camp-lib';
 import Info from 'info';
 
+process.on('uncaughtException', function(err) {
+    console.log(err);
+});
 const soldier = new TheCamp.Soldier(
     Info.soldier.name,
     Info.soldier.birthday,
@@ -56,6 +59,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         }
         res.status(200).json({done: true});
     } catch {
-        res.status(200).json({done: false});
+        res.status(500).send('');
+        res.end();
     }
 }
