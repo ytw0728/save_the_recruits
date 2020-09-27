@@ -1,6 +1,5 @@
 import { NextComponentType, NextPageContext } from "next";
-import { useEffect } from "react";
-import { useLocalStorage } from "src/utils/useLocalStorage";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import InputBox from "../atoms/box/InputBox";
 import TextfieldBox from "../atoms/box/TextfieldBox";
 import RoundButton from "../atoms/button/RoundButton";
@@ -14,11 +13,14 @@ export type ContentsScreenProps = {
     onDone: (done: boolean) => void;
     onPrev: () => void;
     onSubmit: () => void;
+    title: string;
+    setTitle: Dispatch<SetStateAction<string>>;
+    content: string;
+    setContent: Dispatch<SetStateAction<string>>;
+    
 }
-const ContentsScreen: NextComponentType<NextPageContext, any, ContentsScreenProps> = (props) => {
-    const [title, setTitle] = useLocalStorage('', 'title');
-    const [content, setContent] = useLocalStorage('', 'content');
- 
+const ContentsScreen: NextComponentType<NextPageContext, any, ContentsScreenProps> = ({title, setTitle, content, setContent, ...props}) => {
+
     useEffect(() => {
         if (title.length >= 10 && content.length >= 10) {
             props.onDone(true);

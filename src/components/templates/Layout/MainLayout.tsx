@@ -191,10 +191,14 @@ const MainLayout: NextComponentType = () => {
                     { step === 0 && <span>07/28/1998 출생 &nbsp;&nbsp; 10/08/2020 입소</span>}
                 </Description>
                 { step === 0 && <InfoScreen onNext={() => setStep(1)}/> }
-                { step === 1 && <NameScreen onPrev={() => setStep(0)} onNext={() => setStep(2)}/> }
+                { step === 1 && <NameScreen name={name} setName={setName} onPrev={() => setStep(0)} onNext={() => setStep(2)}/> }
                 { 
                     step >= 2 && 
                     <ContentsScreen step={step}
+                        title={title}
+                        setTitle={setTitle}
+                        content={content}
+                        setContent={setContent}
                         onPrev={() => setStep(1)}
                         onDone={(b) => setStep(b ? 3 : 2)}
                         onSubmit={onSubmit}

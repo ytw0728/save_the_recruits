@@ -1,16 +1,17 @@
 import { NextComponentType, NextPageContext } from "next";
-import { useLocalStorage } from "src/utils/useLocalStorage";
+import { Dispatch, SetStateAction } from "react";
 import InputBox from "../atoms/box/InputBox";
 import RoundButton from "../atoms/button/RoundButton";
 import Step from "../atoms/step/Step";
 import RoundInputWithLabel from "../molecules/input/RoundInputWithLabel";
 
 export type NameScreenProps = {
+    name: string;
+    setName: Dispatch<SetStateAction<string>>;
     onNext: () => void;
     onPrev: () => void;
 }
-const NameScreen: NextComponentType<NextPageContext, any, NameScreenProps> = (props) => {
-    const [name, setName] = useLocalStorage('', 'name');
+const NameScreen: NextComponentType<NextPageContext, any, NameScreenProps> = ({name, setName, ...props}) => {
     const onNext = () => {
         if (Boolean(name)) {
             props.onNext();
