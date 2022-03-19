@@ -1,17 +1,18 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import * as TheCamp from 'the-camp-lib';
-import Info from 'info';
+
 
 process.on('uncaughtException', function(err) {
     console.log(err);
 });
+
 const soldier = new TheCamp.Soldier(
-    Info.soldier.name,
-    Info.soldier.birthday,
-    Info.soldier.enterDate,
-    Info.soldier.className as TheCamp.SoldierClassName,
-    Info.soldier.groupName as TheCamp.SoldierGroupName,
-    Info.soldier.unitName as TheCamp.SoldierUnitName,
+    process.env.SOLDIER_NAME ?? '',
+    process.env.SOLDIER_BIRTHDAY ?? '',
+    process.env.SOLDIER_ENTER_DATE ?? '',
+    process.env.SOLDIER_CLASS_NAME as TheCamp.SoldierClassName ?? '',
+    process.env.SOLDIER_GROUP_NAME  as TheCamp.SoldierGroupName ?? '',
+    process.env.SOLDIER_UNIT_NAME as TheCamp.SoldierUnitName ?? '',
     TheCamp.SoldierRelationship.FRIEND,
 )
 
@@ -29,7 +30,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         return;
     }
     try {
-        await client.login(Info.email, Info.password);
+        await client.login(process.env.EMAIL ?? '', process.env.PASSWORD ?? '');
         if ((await client.fetchSoldiers(soldier)).length < 1) {
             await client.addSoldier(soldier);
         }

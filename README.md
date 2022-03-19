@@ -20,19 +20,20 @@ A `type-check` script is also added to `package.json`, which runs TypeScript's `
 
 ## 기본 정보
 
-/info.ts
+### 환경 변수
 
-```ts
-export default {
-    soldier: {
-        name: '이름',
-        birthday: '생일', // ex 19980728
-        enterDate: '입소일',// ex 20201008
-        className: '성분', // ex '예비군인/훈련병'
-        groupName: '군종', // ex '육군'
-        unitName: '연대', // ex '육군훈련소(25연대)'
-    },
-    email: '더캠프이메일',
-    password: '더캠프 비밀번호',
-}
+```bash
+SOLDIER_NAME : '이름'
+SOLDIER_BIRTHDAY : '생일' // ex 19980728
+SOLDIER_ENTER_DATE : '입소일'// ex 20201008
+SOLDIER_CLASS_NAME : '성분' // ex 예비군인/훈련병
+SOLDIER_GROUP_NAME : '군종' // ex 육군
+SOLDIER_UNIT_NAME : '연대' // ex 육군훈련소(25연대)
+
+EMAIL : '더캠프이메일'
+PASSWORD : '더캠프 비밀번호'
+
+NEXT_PUBLIC_NAME : '페이지에 표시될 이름' // 윤태원
+NEXT_PUBLIC_BIRTHDAY : '페이지에 표시될 출생 날짜' // 07/28/1998 출생
+NEXT_PUBLIC_ENTERDAY : '페이지에 표시될 입소 날짜' // 10/08/2020 입소
 ```

@@ -17,7 +17,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "styled-components": "^5.2.0",
-    "the-camp-lib": "^2.3.1"
+    "the-camp-lib": "^2.4.0"
   },
   "devDependencies": {
     "@types/node": "^12.12.21",

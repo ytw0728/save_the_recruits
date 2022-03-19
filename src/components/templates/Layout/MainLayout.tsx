@@ -187,8 +187,8 @@ const MainLayout: NextComponentType = () => {
             <Viewport>
                 <Title>훈련병에게 편지를...!</Title>
                 <Description>
-                    <span>윤태원</span>
-                    { step === 0 && <span>07/28/1998 출생 &nbsp;&nbsp; 10/08/2020 입소</span>}
+                    <span>{process.env.NEXT_PUBLIC_NAME ?? '이름'}</span>
+                    { step === 0 && <span>{process.env.NEXT_PUBLIC_BIRTHDAY ?? 'MM/DD/YYYY 출생'} &nbsp;&nbsp; {process.env.NEXT_PUBLIC_ENTERDAY ?? 'MM/DD/YYYY 입소'}</span>}
                 </Description>
                 { step === 0 && <InfoScreen onNext={() => setStep(1)}/> }
                 { step === 1 && <NameScreen name={name} setName={setName} onPrev={() => setStep(0)} onNext={() => setStep(2)}/> }
