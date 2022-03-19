@@ -1,6 +1,11 @@
 import { NextComponentType, NextPageContext } from "next";
 import styled from "styled-components";
 
+const Root = styled.section`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+`
 
 const Wrap = styled.ul`
     box-sizing: border-box;
@@ -26,11 +31,13 @@ export type InfoBoxProps = {
 }
 const InfoBox: NextComponentType<NextPageContext, any, InfoBoxProps> = (props) => {
     return (
-        <Wrap>
-            {props.infos.map((s, idx) => 
-                <Line key={idx}>{s}</Line>
-            )}
-        </Wrap>
+        <Root>
+            <Wrap>
+                {props.infos.map((s, idx) => 
+                    <Line key={idx}>{s}</Line>
+                )}
+            </Wrap>
+        </Root>
     )
 }
 
