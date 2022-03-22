@@ -58,9 +58,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     content.replace(/\r/g, '\n');
     content.replace(/\n/g, '<br/>');
 
+    const originTitle = title
     title = title.length > 15 ? `${title.slice(0,15)}...` : title
 
-    const header = (idx: number): string => `[${`00${idx}`.slice(-2)}] ${title} (${name}) | `
+    const header = (idx: number): string => `[${`00${idx}`.slice(-2)}] ${originTitle} (${name}) | `
     const headerLen = header(0).length
     const contentWindow = 1500 - headerLen
     for (let index = 1; content.length >= contentWindow * (index - 1); index++){
