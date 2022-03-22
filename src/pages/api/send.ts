@@ -34,7 +34,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         if ((await client.fetchSoldiers(soldier)).length < 1) {
             await client.addSoldier(soldier);
         }
+    } catch (e) {
+        res.setHeader('Error-Point', 'add soldier')
+        res.status(500).send(JSON.stringify(e))
+        res.end()
+        return
+    }
+
+    try {
         const [trainee] = await client.fetchSoldiers(soldier);
+        res.setHeader('Trainee', JSON.stringify(trainee))
 
         content.replace(/\r\n/g, '\n');
         content.replace(/\r/g, '\n');
@@ -60,6 +69,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         }
         res.status(200).json({done: true});
     } catch (e) {
+        res.setHeader('Error-Point', 'send message')
         res.status(500).send(JSON.stringify(e));
         res.end();
     }
