@@ -59,8 +59,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             await client.sendMessage(soldier, message);
         }
         res.status(200).json({done: true});
-    } catch {
-        res.status(500).send('');
+    } catch (e) {
+        res.status(500).send(JSON.stringify(e));
         res.end();
     }
 }
