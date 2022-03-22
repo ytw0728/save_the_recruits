@@ -30,6 +30,12 @@ SOLDIER_CLASS_NAME : '성분' // ex 예비군인/훈련병
 SOLDIER_GROUP_NAME : '군종' // ex 육군
 SOLDIER_UNIT_NAME : '연대' // ex 육군훈련소(25연대)
 
+
+// 직접 테스트해서 network에서 따오기
+TRAIN_UNIT_CD= '입영부대 코드'
+TRAIN_UNIT_EDU_SEQ=14115
+TRAINEE_MGR_SEQ = '훈련병 식별 코드' 
+
 EMAIL : '더캠프이메일'
 PASSWORD : '더캠프 비밀번호'
 
