@@ -8,7 +8,7 @@ const Label = styled.label`
 
     transition: all .5s ease;
 
-    user-selection: none;
+    user-select: none;
 `;
 
 const InputLabel: NextComponentType<NextPageContext, any, {htmlFor?: string}> = (props) => {

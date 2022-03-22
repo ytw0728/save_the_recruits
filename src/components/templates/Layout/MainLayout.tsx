@@ -151,12 +151,13 @@ const MainLayout: NextComponentType = () => {
                     const content = JSON.parse(xhr.responseText) as {done: boolean};
                     if (content.done) {
                         setTimeout(() => {
+                            alert('편지가 전송되었습니다.');
                             setLoading(false);
                             setName('');
                             setTitle('');
                             setContent('');
                             setStep(0);
-                            alert('편지가 전송되었습니다.');
+                            window.location.reload()
                         }, new Date() < minimumDate ? 3000 : 0);
                     }
                 } else if (xhr.status === 400) {
