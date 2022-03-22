@@ -31,9 +31,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
     try {
         await client.login(process.env.EMAIL ?? '', process.env.PASSWORD ?? '');
-        if ((await client.fetchSoldiers(soldier)).length < 1) {
-            await client.addSoldier(soldier);
-        }
+        await client.addSoldier(soldier);
     } catch (e) {
         res.setHeader('Error-Point', 'add soldier')
         res.status(500).send(JSON.stringify(e))
